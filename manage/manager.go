@@ -195,9 +195,9 @@ func (m *Manager) GenerateInvoice(ctx context.Context, gir *GenerateInvoiceReque
 	// TODO implement builder pattern to construct invoice
 	// TODO check whether it contains the scheme http/https
 	if gir.Callback != nil {
-
 		inv.SuccessRedirectURL = gir.Callback.SuccessRedirectURL
 		inv.FailureRedirectURL = gir.Callback.FailureRedirectURL
+		inv.CallbackURL = gir.Callback.CallbackURL // Set the new callback URL
 	}
 
 	var items []invoice.LineItem

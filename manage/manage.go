@@ -38,6 +38,7 @@ type GenerateInvoiceRequest struct {
 	Callback *struct {
 		SuccessRedirectURL string `json:"success_redirect_url"`
 		FailureRedirectURL string `json:"failure_redirect_url"`
+		CallbackURL        string `json:"callback_url"` // New field for notification callback URL
 	} `json:"callback"`
 }
 
