@@ -9,13 +9,13 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/datastore"
-	midgateway "github.com/imrenagi/go-payment/gateway/midtrans"
-	xengateway "github.com/imrenagi/go-payment/gateway/xendit"
-	"github.com/imrenagi/go-payment/invoice"
-	"github.com/imrenagi/go-payment/subscription"
-	"github.com/imrenagi/go-payment/util/localconfig"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/datastore"
+	midgateway "github.com/asepkh/aigen-payment/gateway/midtrans"
+	xengateway "github.com/asepkh/aigen-payment/gateway/xendit"
+	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-payment/subscription"
+	"github.com/asepkh/aigen-payment/util/localconfig"
 )
 
 // NewManager creates a new payment manager

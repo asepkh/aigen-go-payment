@@ -6,7 +6,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/imrenagi/go-payment"
+	payment "github.com/asepkh/aigen-payment"
 )
 
 // FeeConfigReader holds function used for retrieving payment method's information (gateway and fee)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/imrenagi/go-payment"
+	payment "github.com/asepkh/aigen-payment"
 )
 
 // waitingTime represent the time duration with a time unit (minute, hour, day, second). This used

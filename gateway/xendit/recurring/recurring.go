@@ -6,8 +6,8 @@ import (
 
 	xgo "github.com/xendit/xendit-go"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/subscription"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/subscription"
 
 	xrp "github.com/xendit/xendit-go/recurringpayment"
 )
@@ -79,7 +79,6 @@ func (b *RecurringChargeRequestBuilder) Build() (*xrp.CreateParams, error) {
 
 	return b.request, nil
 }
-
 
 func missedPaymentAction(enum subscription.MissedPaymentAction) xgo.MissedPaymentActionEnum {
 	switch enum {

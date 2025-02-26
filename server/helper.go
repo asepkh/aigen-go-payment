@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/imrenagi/go-payment"
+	payment "github.com/asepkh/aigen-payment"
 )
 
 type Meta struct {

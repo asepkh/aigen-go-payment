@@ -8,10 +8,10 @@ import (
 
 	"github.com/midtrans/midtrans-go/coreapi"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/gateway/xendit"
-	"github.com/imrenagi/go-payment/invoice"
-	"github.com/imrenagi/go-payment/subscription"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/gateway/xendit"
+	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-payment/subscription"
 )
 
 // GenerateInvoiceRequest provide to generate new invoice

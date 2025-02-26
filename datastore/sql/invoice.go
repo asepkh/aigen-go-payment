@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/invoice"
+	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-payment"
 	"github.com/rs/zerolog"
 	"gorm.io/gorm"
 )

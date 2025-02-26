@@ -6,7 +6,7 @@ import (
 	goxendit "github.com/xendit/xendit-go"
 	"github.com/xendit/xendit-go/ewallet"
 
-	"github.com/imrenagi/go-payment/invoice"
+	"github.com/asepkh/aigen-payment/invoice"
 )
 
 // NewOVO creates CreatePaymentParams from invoice data

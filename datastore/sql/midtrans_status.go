@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/gateway/midtrans"
-	"gorm.io/gorm"
+	"github.com/asepkh/aigen-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-payment"
 	"github.com/rs/zerolog"
+	"gorm.io/gorm"
 )
 
 func NewMidtransTransactionRepository(db *gorm.DB) *MidtransTransactionRepository {

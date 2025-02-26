@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/imrenagi/go-payment/subscription"
+	"github.com/asepkh/aigen-payment/subscription"
+	"github.com/asepkh/aigen-payment"
 
-	"github.com/imrenagi/go-payment"
-	"gorm.io/gorm"
 	"github.com/rs/zerolog"
+	"gorm.io/gorm"
 )
 
 func NewSubscriptionRepository(db *gorm.DB) *SubscriptionRepository {
@@ -43,7 +43,7 @@ func (r *SubscriptionRepository) FindByNumber(ctx context.Context, number string
 		Preload("Invoices").
 		Where("number = ?", number).First(&subs)
 
-	if req.Error == gorm.ErrRecordNotFound{
+	if req.Error == gorm.ErrRecordNotFound {
 		return nil, fmt.Errorf("subscription %s %w", number, payment.ErrNotFound)
 	}
 

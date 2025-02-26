@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/invoice"
 	"github.com/google/uuid"
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/invoice"
 )
 
 // New creates empty subscription with valid UUID

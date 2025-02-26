@@ -1,13 +1,13 @@
 package xeninvoice
 
 import (
-  xinvoice "github.com/xendit/xendit-go/invoice"
+	xinvoice "github.com/xendit/xendit-go/invoice"
 
-  "github.com/imrenagi/go-payment/invoice"
+	"github.com/asepkh/aigen-payment/invoice"
 )
 
 func NewPermataVA(inv *invoice.Invoice) (*xinvoice.CreateParams, error) {
-  return newBuilder(inv).
-    AddPaymentMethod("PERMATA").
-    Build()
+	return newBuilder(inv).
+		AddPaymentMethod("PERMATA").
+		Build()
 }
