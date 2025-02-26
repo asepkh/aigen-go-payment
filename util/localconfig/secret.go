@@ -29,14 +29,16 @@ type DBCredential struct {
 type PaymentSecret struct {
 	Midtrans APICredential `yaml:"midtrans"`
 	Xendit   APICredential `yaml:"xendit"`
+	Finpay   APICredential `yaml:"finpay"`
 }
 
 // APICredential stores the credential used for connecting to an API service
 type APICredential struct {
-	ClientID      string `yaml:"clientId"`
-	ClientKey     string `yaml:"clientKey"`
-	SecretKey     string `yaml:"secretKey"`
-	CallbackToken string `yaml:"callbackToken"`
+	ClientID      string  `yaml:"clientId"`
+	MerchantID    *string `yaml:"merchantId"`
+	ClientKey     string  `yaml:"clientKey"`
+	SecretKey     string  `yaml:"secretKey"`
+	CallbackToken string  `yaml:"callbackToken"`
 }
 
 // LoadSecret reads the file from path and return Secret
@@ -55,7 +57,6 @@ func LoadSecretFromBytes(data []byte) (*Secret, error) {
 	fang.AutomaticEnv()
 	fang.SetEnvPrefix("GOPAYMENT")
 	fang.SetConfigType("yaml")
-	
 
 	if err := fang.ReadConfig(bytes.NewBuffer(data)); err != nil {
 		return nil, err

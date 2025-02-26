@@ -9,6 +9,7 @@ import (
 
 	payment "github.com/asepkh/aigen-payment"
 	"github.com/asepkh/aigen-payment/config"
+	"github.com/asepkh/aigen-payment/gateway/finpay"
 	"github.com/asepkh/aigen-payment/gateway/midtrans"
 	"github.com/asepkh/aigen-payment/invoice"
 )
@@ -24,6 +25,7 @@ type MidtransTransactionStatusRepository interface {
 type InvoiceRepository interface {
 	FindByNumber(ctx context.Context, number string) (*invoice.Invoice, error)
 	Save(ctx context.Context, invoice *invoice.Invoice) error
+	Update(ctx context.Context, invoice *invoice.Invoice) error
 }
 
 // PaymentConfigReader is interface for reading payment configuration
@@ -36,4 +38,11 @@ type PaymentConfigReader interface {
 type SubscriptionRepository interface {
 	Save(ctx context.Context, subs *subscription.Subscription) error
 	FindByNumber(ctx context.Context, number string) (*subscription.Subscription, error)
+}
+
+// FinpayTransactionStatusRepository is a repository for Finpay transaction status
+type FinpayTransactionStatusRepository interface {
+	Store(context.Context, *finpay.TransactionStatus) error
+	FindByTransactionID(context.Context, string) (*finpay.TransactionStatus, error)
+	FindByOrderID(context.Context, string) (*finpay.TransactionStatus, error)
 }

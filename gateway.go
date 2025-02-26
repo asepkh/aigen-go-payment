@@ -15,10 +15,12 @@ const (
 	GatewayMidtrans
 	// GatewayXendit is xendit payment gateway
 	GatewayXendit
+	// GatewayFinpay is finpay payment gateway
+	GatewayFinpay
 )
 
 func (g Gateway) String() string {
-	return []string{"unkown", "midtrans", "xendit"}[g]
+	return []string{"unkown", "midtrans", "xendit", "finpay"}[g]
 }
 
 // UnmarshalYAML convert string to Gateway enum
@@ -45,6 +47,8 @@ func NewGateway(name string) Gateway {
 		g = GatewayMidtrans
 	case "xendit":
 		g = GatewayXendit
+	case "finpay":
+		g = GatewayFinpay
 	default:
 		g = UnknownGateway
 	}

@@ -284,6 +284,18 @@ func (i *Invoice) Fail(ctx context.Context) error {
 	return i.GetStateController().Fail(i)
 }
 
+// MarkAsPaid marks the invoice as paid without requiring a context
+func (i *Invoice) MarkAsPaid() error {
+	now := time.Now()
+	i.PaidAt = &now
+	return i.GetStateController().Pay(i, i.Payment.TransactionID)
+}
+
+// MarkAsFailed marks the invoice as failed without requiring a context
+func (i *Invoice) MarkAsFailed() error {
+	return i.GetStateController().Fail(i)
+}
+
 // Reset changes the invoice invoice so that it can be used again
 func (i *Invoice) Reset(ctx context.Context) error {
 

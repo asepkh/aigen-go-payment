@@ -1,12 +1,12 @@
 card_payment:
   payment_type: "credit_card"
-  installments:    
+  installments:
     - type: offline
-      display_name: ""
-      gateway: midtrans
+      display_name: "Credit Card (Finpay)"
+      gateway: finpay
       bank: bca
       channel: migs
-      default: true
+      default: false
       active: true
       terms:
         - term: 0
@@ -20,7 +20,7 @@ card_payment:
             IDR:
               val_percentage: 5.5
               val_currency: 2200
-              currency: "IDR"  
+              currency: "IDR"
         - term: 6
           installment_fee:
             IDR:
@@ -32,7 +32,7 @@ card_payment:
             IDR:
               val_percentage: 9
               val_currency: 2200
-              currency: "IDR"                                          
+              currency: "IDR"
 bank_transfers:
   - gateway: xendit
     payment_type: "bri_va"
@@ -63,10 +63,10 @@ bank_transfers:
       IDR:
         val_percentage: 0
         val_currency: 2000
-        currency: "IDR" 
+        currency: "IDR"
     waiting_time:
       duration: 1
-      unit: day        
+      unit: day
   - gateway: midtrans
     payment_type: "bni_va"
     display_name: "BNI"
@@ -77,7 +77,7 @@ bank_transfers:
         currency: "IDR"
     waiting_time:
       duration: 1
-      unit: day        
+      unit: day
   - gateway: midtrans
     payment_type: "permata_va"
     display_name: "Bank Permata"
@@ -88,7 +88,7 @@ bank_transfers:
         currency: "IDR"
     waiting_time:
       duration: 1
-      unit: day        
+      unit: day
   - gateway: midtrans
     payment_type: "other_va"
     display_name: "Bank Lainnya"
@@ -99,7 +99,62 @@ bank_transfers:
         currency: "IDR"
     waiting_time:
       duration: 1
-      unit: day                             
+      unit: day
+  - gateway: finpay
+    payment_type: "bca_va"
+    display_name: "BCA (Finpay)"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 4000
+        currency: "IDR"
+    waiting_time:
+      duration: 1
+      unit: day
+  - gateway: finpay
+    payment_type: "bri_va"
+    display_name: "BRI (Finpay)"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 4000
+        currency: "IDR"
+    waiting_time:
+      duration: 1
+      unit: day
+  - gateway: finpay
+    payment_type: "bni_va"
+    display_name: "BNI (Finpay)"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 4000
+        currency: "IDR"
+    waiting_time:
+      duration: 1
+      unit: day
+  - gateway: finpay
+    payment_type: "mandiri_va"
+    display_name: "Mandiri (Finpay)"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 4000
+        currency: "IDR"
+    waiting_time:
+      duration: 1
+      unit: day
+  - gateway: finpay
+    payment_type: "permata_va"
+    display_name: "Permata (Finpay)"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 4000
+        currency: "IDR"
+    waiting_time:
+      duration: 1
+      unit: day
 ewallets:
   - gateway: midtrans
     payment_type: "gopay"
@@ -111,7 +166,7 @@ ewallets:
         currency: "IDR"
     waiting_time:
       duration: 15
-      unit: minute     
+      unit: minute
   - gateway: xendit
     payment_type: "ovo"
     display_name: "OVO"
@@ -122,7 +177,7 @@ ewallets:
         currency: "IDR"
     waiting_time:
       duration: 15
-      unit: minute 
+      unit: minute
   - gateway: xendit
     payment_type: "dana"
     display_name: "DANA"
@@ -133,7 +188,7 @@ ewallets:
         currency: "IDR"
     waiting_time:
       duration: 15
-      unit: minute 
+      unit: minute
   - gateway: xendit
     payment_type: "linkaja"
     display_name: "LinkAja"
@@ -167,27 +222,49 @@ ewallets:
     waiting_time:
       duration: 15
       unit: minute
+  - gateway: finpay
+    payment_type: "qris"
+    display_name: "QRIS (Finpay)"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 0
+        currency: "IDR"
+    waiting_time:
+      duration: 15
+      unit: minute
 cstores:
-  - gateway: midtrans
+  - gateway: finpay
     payment_type: alfamart
-    display_name: "Alfamart"
-    admin_fee: 
+    display_name: "Alfamart (Finpay)"
+    admin_fee:
       IDR:
         val_percentage: 0
         val_currency: 2000
         currency: "IDR"
     waiting_time:
       duration: 1
-      unit: day        
+      unit: day
+  - gateway: midtrans
+    payment_type: alfamart
+    display_name: "Alfamart"
+    admin_fee:
+      IDR:
+        val_percentage: 0
+        val_currency: 2000
+        currency: "IDR"
+    waiting_time:
+      duration: 1
+      unit: day
 cardless_credits:
   - gateway: midtrans
     payment_type: akulaku
     display_name: "Akulaku"
-    admin_fee: 
+    admin_fee:
       IDR:
         val_percentage: 2.0
         val_currency: 0
         currency: "IDR"
     waiting_time:
       duration: 1
-      unit: day        
+      unit: day

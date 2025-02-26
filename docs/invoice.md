@@ -72,3 +72,34 @@ attention to `payment` object.
 - `payment.token` is always empty for all xendit provided payment channels
 - You will always open `payment.redirect_url` in new browser tap for all payment methods provided by xendit. Including
   DANA, LinkAja, Kredivo, even Xendit Invoice.
+
+### For Finpay Payment Channel
+
+- Value of `payment.gateway` will is always `finpay`
+- `payment.token` may contain a token value depending on the payment method
+- You should open `payment.redirect_url` in a new browser tab for all payment methods provided by Finpay
+- Supported payment methods include:
+  - Virtual Accounts (BCA, BNI, BRI, Mandiri, Permata, Other Banks)
+  - Credit Card
+  - QRIS
+  - Retail outlets (Alfamart)
+
+## Handling Callbacks
+
+The system handles callbacks from payment gateways automatically. When a payment is completed or fails, the corresponding invoice status will be updated accordingly.
+
+### Finpay Callback
+
+For Finpay, the callback endpoint is configured in the `config.yaml` file:
+
+```yaml
+finpay:
+  callback_url: "https://example.com/payment/finpay/callback"
+```
+
+The server will handle the callback at the endpoint `/payment/finpay/callback`. When a payment status update is received, the system will:
+
+1. Validate the signature from Finpay
+2. Store the transaction status in the database
+3. Update the invoice status based on the transaction status
+4. Trigger any configured callbacks for successful or failed payments
