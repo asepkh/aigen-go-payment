@@ -2,7 +2,7 @@
 
 <div align='center'>
 
-![go-payment](./header.png)
+![aigen-go-payment](./header.png)
 
 </div>
 

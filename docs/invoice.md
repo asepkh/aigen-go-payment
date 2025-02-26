@@ -34,7 +34,7 @@ POST /payment/invoices
 }
 ```
 
-> To create invoice with `credit_card` payment with/without installment, please take a look [POSTMAN COLLECTION](/example/server/go-payment.postman_collection.json)
+> To create invoice with `credit_card` payment with/without installment, please take a look [POSTMAN COLLECTION](/example/server/aigen-go-payment.postman_collection.json)
 
 ### Response
 
