@@ -1,5 +1,4 @@
-Invoice API
-===
+# Invoice API
 
 ## Generating New Invoice
 
@@ -21,15 +20,17 @@ POST /payment/invoices
     "email": "foo@example.com",
     "phone_number": "089922222222"
   },
-  "items": [{
-    "name": "Support Podcast",
-    "category": "PODCAST",
-    "merchant": "imrenagi.com",
-    "description": "donasi podcast imre nagi",
-    "qty": 1,
-    "price": 80001,
-    "currency": "IDR"
-  }]
+  "items": [
+    {
+      "name": "Support Podcast",
+      "category": "PODCAST",
+      "merchant": "aigen-payment.com",
+      "description": "donasi podcast imre nagi",
+      "qty": 1,
+      "price": 80001,
+      "currency": "IDR"
+    }
+  ]
 }
 ```
 

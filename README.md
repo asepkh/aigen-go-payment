@@ -8,8 +8,6 @@
 
 Payment module used as proxy for multiple payment gateways. Currently it only supports [Midtrans SNAP](https://snap-docs.midtrans.com/) and Xendit [Ewallet](https://xendit.github.io/apireference/#ewallets) and [XenInvoice](https://xendit.github.io/apireference/#invoices). Support for other channels will be added incrementally.
 
-> This payment proxy is a payment service I used for my [personal site](https://imrenagi.com/donate). Thinking that this might be useful to help other people so that they can start accept money ASAP, so I decided to make this module open source.
-
 ---
 
 <details>
@@ -107,7 +105,7 @@ Here some preparations that you might need before using this proxy.
 
 ### Payment Gateway Registration
 
-This can be tricky. If you have personal business, this might be easier. If you have business entity (PT, CV, etc), there are some additional processes you have to follow and some documents that you have to provide. In this context, I will just assume that you have personal business like what I do: [imrenagi.com](https://imrenagi.com)
+This can be tricky. If you have personal business, this might be easier. If you have business entity (PT, CV, etc), there are some additional processes you have to follow and some documents that you have to provide.
 
 #### Midtrans
 
@@ -150,7 +148,7 @@ To set your callback URL,
 - Login to <https://dashboard.midtrans.com>
 - Choose environment (Sandbox or Production)
 - Click Settings > Configuration
-- Set your **Payment Notification URL** with your server callback. For instance: `https://api.imrenagi.com/payment/midtrans/callback`
+- Set your **Payment Notification URL** with your server callback. For instance: `{URL}/payment/midtrans/callback`
 - Set your **Finish**, **Unfinish**, and **Error** redirect URL
 - Click **Update**
 
@@ -161,7 +159,7 @@ To set your callback URL,
 - Login to <https://dashboard.xendit.co>
 - Choose environment (Live or Test)
 - Click Settings > Callbacks
-- Set your callbacks for Invoices Paid. For instance: `https://api.imrenagi.com/payment/xendit/invoice/callback`
+- Set your callbacks for Invoices Paid. For instance: `{URL}/payment/xendit/invoice/callback`
 - Check option **Also notify my application when an invoice is expired**
 - Click **Save and Test**
 
