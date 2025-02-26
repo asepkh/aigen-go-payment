@@ -3,7 +3,7 @@ package finpay
 import (
 	"testing"
 
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 )
 
 func newTestGateway(t *testing.T) *Gateway {

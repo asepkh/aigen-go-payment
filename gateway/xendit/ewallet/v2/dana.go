@@ -5,7 +5,7 @@ import (
 
 	"github.com/xendit/xendit-go/ewallet"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // NewDana is factory for Dana payment with xendit latest charge API

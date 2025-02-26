@@ -9,15 +9,15 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/datastore"
-	"github.com/asepkh/aigen-payment/gateway/finpay"
-	fingateway "github.com/asepkh/aigen-payment/gateway/finpay"
-	midgateway "github.com/asepkh/aigen-payment/gateway/midtrans"
-	xengateway "github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment/subscription"
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/datastore"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
+	fingateway "github.com/asepkh/aigen-go-payment/gateway/finpay"
+	midgateway "github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	xengateway "github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/subscription"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 )
 
 // NewManager creates a new payment manager

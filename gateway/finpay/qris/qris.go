@@ -1,7 +1,7 @@
 package qris
 
 import (
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // QRISRequest represents a request to create a QRIS payment

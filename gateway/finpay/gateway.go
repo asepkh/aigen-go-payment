@@ -3,7 +3,7 @@ package finpay
 import (
 	"os"
 
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 )
 
 // NewGateway creates new finpay payment gateway

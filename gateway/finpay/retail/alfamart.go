@@ -1,7 +1,7 @@
 package retail
 
 import (
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // AlfamartRequest represents a request to create an Alfamart payment

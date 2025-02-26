@@ -1,7 +1,7 @@
 package va
 
 import (
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // PermataVARequest represents a request to create a Permata virtual account

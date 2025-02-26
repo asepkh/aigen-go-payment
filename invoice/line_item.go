@@ -3,7 +3,7 @@ package invoice
 import (
 	"fmt"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 type LineItemError struct {

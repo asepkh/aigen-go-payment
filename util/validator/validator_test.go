@@ -3,7 +3,7 @@ package validator_test
 import (
 	"testing"
 
-	. "github.com/asepkh/aigen-payment/util/validator"
+	. "github.com/asepkh/aigen-go-payment/util/validator"
 )
 
 func TestEmailValidator_IsValid(t *testing.T) {

@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/gateway/finpay/creditcard"
-	"github.com/asepkh/aigen-payment/gateway/finpay/qris"
-	"github.com/asepkh/aigen-payment/gateway/finpay/retail"
-	"github.com/asepkh/aigen-payment/gateway/finpay/va"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay/creditcard"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay/qris"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay/retail"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay/va"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // NewFinpayRequestFromInvoice creates finpay charge request from invoice

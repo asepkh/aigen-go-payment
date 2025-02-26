@@ -7,8 +7,8 @@ import (
 	"github.com/xendit/xendit-go"
 	"github.com/xendit/xendit-go/ewallet"
 
-	. "github.com/asepkh/aigen-payment/gateway/xendit/ewallet/v2"
-	"github.com/asepkh/aigen-payment/invoice"
+	. "github.com/asepkh/aigen-go-payment/gateway/xendit/ewallet/v2"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 func TestOvoCharge(t *testing.T) {

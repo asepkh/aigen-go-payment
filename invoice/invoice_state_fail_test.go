@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/asepkh/aigen-payment/config"
-	cfgm "github.com/asepkh/aigen-payment/config/mocks"
-	dsm "github.com/asepkh/aigen-payment/datastore/mocks"
-	. "github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/config"
+	cfgm "github.com/asepkh/aigen-go-payment/config/mocks"
+	dsm "github.com/asepkh/aigen-go-payment/datastore/mocks"
+	. "github.com/asepkh/aigen-go-payment/invoice"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

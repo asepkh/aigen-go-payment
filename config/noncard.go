@@ -3,7 +3,7 @@ package config
 import (
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // NonCard represent the configuration for non cards payment (ewallet, retail outlet, cardless credit,

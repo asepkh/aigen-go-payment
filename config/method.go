@@ -3,7 +3,7 @@ package config
 import (
 	"encoding/json"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // NewNonCardPayment returns new NonCardPayment. if value is not nil, the admin fee of this payment method

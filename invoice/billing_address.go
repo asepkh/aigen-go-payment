@@ -3,8 +3,8 @@ package invoice
 import (
 	"fmt"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/util/validator"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/util/validator"
 )
 
 var (

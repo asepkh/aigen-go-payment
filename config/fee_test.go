@@ -3,7 +3,7 @@ package config_test
 import (
 	"testing"
 
-	. "github.com/asepkh/aigen-payment/config"
+	. "github.com/asepkh/aigen-go-payment/config"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,8 +1,8 @@
 package xendit
 
 import (
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/subscription"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/subscription"
 )
 
 // NewStatus convert xendit status string to subscripiton status

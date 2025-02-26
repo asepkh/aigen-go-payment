@@ -7,11 +7,11 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/gateway/xendit/recurring"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/gateway/xendit/recurring"
 
-	"github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/subscription"
+	"github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/subscription"
 
 	goxendit "github.com/xendit/xendit-go"
 	xrecurring "github.com/xendit/xendit-go/recurringpayment"

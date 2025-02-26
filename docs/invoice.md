@@ -24,7 +24,7 @@ POST /payment/invoices
     {
       "name": "Support Podcast",
       "category": "PODCAST",
-      "merchant": "aigen-payment.com",
+      "merchant": "aigen-go-payment.com",
       "description": "donasi podcast imre nagi",
       "qty": 1,
       "price": 80001,

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // EWalletPaymentStatus stores callback information for xendit ewallet

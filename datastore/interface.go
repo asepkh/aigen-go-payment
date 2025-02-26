@@ -5,13 +5,13 @@ package datastore
 import (
 	"context"
 
-	"github.com/asepkh/aigen-payment/subscription"
+	"github.com/asepkh/aigen-go-payment/subscription"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/config"
-	"github.com/asepkh/aigen-payment/gateway/finpay"
-	"github.com/asepkh/aigen-payment/gateway/midtrans"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/config"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
+	"github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // MidtransTransactionStatusRepository is an interface for

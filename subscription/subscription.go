@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/invoice"
 	"github.com/google/uuid"
 )
 

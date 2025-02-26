@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/asepkh/aigen-payment/gateway/finpay"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
 	"github.com/rs/zerolog/log"
 )
 

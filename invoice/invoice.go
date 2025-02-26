@@ -7,8 +7,8 @@ import (
 
 	"gorm.io/gorm"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/config"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/config"
 
 	"github.com/google/uuid"
 )

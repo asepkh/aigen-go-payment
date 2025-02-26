@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // TransactionStatus represents finpay transaction status

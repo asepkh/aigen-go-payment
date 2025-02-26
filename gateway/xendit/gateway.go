@@ -3,7 +3,7 @@ package xendit
 import (
 	"context"
 
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 	"github.com/xendit/xendit-go"
 	xgo "github.com/xendit/xendit-go"
 	"github.com/xendit/xendit-go/client"

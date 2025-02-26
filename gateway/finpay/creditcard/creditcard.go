@@ -1,7 +1,7 @@
 package creditcard
 
 import (
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // CreditCardRequest represents a request to create a credit card payment

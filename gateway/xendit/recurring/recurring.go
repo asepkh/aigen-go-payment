@@ -6,8 +6,8 @@ import (
 
 	xgo "github.com/xendit/xendit-go"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/subscription"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/subscription"
 
 	xrp "github.com/xendit/xendit-go/recurringpayment"
 )

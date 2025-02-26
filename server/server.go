@@ -9,11 +9,11 @@ import (
 
 	"gorm.io/gorm"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/gateway/midtrans"
-	"github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment/manage"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/manage"
 )
 
 func migrate(db *gorm.DB) {

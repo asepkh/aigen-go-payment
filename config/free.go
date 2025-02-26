@@ -3,7 +3,7 @@ package config
 import (
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // NewFreeFee returns a fee config reader which has no fee at all

@@ -5,7 +5,7 @@ package subscription
 import (
 	"context"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 type gateway interface {

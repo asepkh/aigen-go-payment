@@ -3,8 +3,8 @@ package snap_test
 import (
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 var fakeInvDate = time.Date(2021, 1, 1, 0, 0, 0, 0, time.UTC)

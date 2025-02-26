@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/gateway/finpay"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 type finpayCharger struct {

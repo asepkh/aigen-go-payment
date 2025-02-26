@@ -7,10 +7,10 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/config"
-	"github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/config"
+	"github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // ProcessDANACallback process dana payment notification from xendit

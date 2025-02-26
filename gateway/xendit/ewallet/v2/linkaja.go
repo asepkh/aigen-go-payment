@@ -5,7 +5,7 @@ import (
 
 	"github.com/xendit/xendit-go/ewallet"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // NewLinkAja is factory for LinkAja payment with xendit latest charge API

@@ -1,8 +1,8 @@
 package snap
 
 import (
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/invoice"
 	"github.com/midtrans/midtrans-go"
 	midsnap "github.com/midtrans/midtrans-go/snap"
 )

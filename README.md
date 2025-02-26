@@ -69,7 +69,7 @@ In general, this payment proxy can support payment through this following channe
 
 1. For simplify the query creation for database join, I use [gorm.io](https://gorm.io/) as the ORM library.
 1. This proxy is not made for supporting all use cases available out there. It's hard requirement is just so that people can accept payment with as low effort as possible without need to worry about custom UI flow.
-1. No callback trigger at least of now once the payment manager is done procesing this request. This will be the next priority of the next release. This issue is documented [here](https://github.com/asepkh/aigen-payment/issues/5)
+1. No callback trigger at least of now once the payment manager is done procesing this request. This will be the next priority of the next release. This issue is documented [here](https://github.com/asepkh/aigen-go-payment/issues/5)
 1. Callback or redirect URL is globally configured. This means, you cant configure callback for each request differently on the fly.
 
 ## Implemented Channels
