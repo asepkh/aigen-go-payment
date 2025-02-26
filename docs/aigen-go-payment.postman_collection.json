@@ -27,7 +27,30 @@
               "host": ["{{base_url}}"],
               "path": ["payment", "invoices"]
             },
-            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku"
+            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku\n* finpay"
+          },
+          "response": []
+        },
+        {
+          "name": "Finpay Payment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"finpay\"\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"089922222222\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/payment/invoices",
+              "host": ["{{base_url}}"],
+              "path": ["payment", "invoices"]
+            },
+            "description": "Finpay payment endpoint. Use payment_type 'finpay' to process payments through the Finpay gateway."
           },
           "response": []
         },
@@ -139,7 +162,7 @@
               "host": ["{{base_url}}"],
               "path": ["payment", "subscriptions"]
             },
-            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku"
+            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku\n* finpay"
           },
           "response": []
         },
@@ -158,7 +181,7 @@
                 "pause"
               ]
             },
-            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku"
+            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku\n* finpay"
           },
           "response": []
         },
@@ -177,7 +200,7 @@
                 "resume"
               ]
             },
-            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku"
+            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku\n* finpay"
           },
           "response": []
         },
@@ -196,7 +219,7 @@
                 "stop"
               ]
             },
-            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku"
+            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku\n* finpay"
           },
           "response": []
         }
@@ -225,7 +248,36 @@
               "host": ["{{base_url}}"],
               "path": ["payment", "xendit", "invoice", "callback"]
             },
-            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku"
+            "description": "supported values for `payment.payment_type`:\n* ovo, \n* dana\n* linkaja\n* bca_va\n* bni_va\n* permata_va\n* other_va\n* alfamart\n* akulaku\n* finpay"
+          },
+          "response": []
+        },
+        {
+          "name": "Finpay Callback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Finpay-Signature",
+                "value": "{{finpay_signature}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"transaction_id\": \"FP-12345678\",\n\t\"merchant_id\": \"MERCHANT123\",\n\t\"reference_id\": \"INV-20230101-001\",\n\t\"amount\": 30000,\n\t\"currency\": \"IDR\",\n\t\"status\": \"PAID\",\n\t\"payment_method\": \"VIRTUAL_ACCOUNT\",\n\t\"payment_channel\": \"BCA\",\n\t\"paid_at\": \"2023-01-01T12:00:00Z\",\n\t\"metadata\": {\n\t\t\"customer_name\": \"John Doe\",\n\t\t\"customer_email\": \"john@example.com\"\n\t}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/payment/finpay/callback",
+              "host": ["{{base_url}}"],
+              "path": ["payment", "finpay", "callback"]
+            },
+            "description": "Finpay callback endpoint for receiving payment status updates from Finpay gateway."
           },
           "response": []
         }

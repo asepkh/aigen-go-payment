@@ -29,6 +29,7 @@ const (
 	SourceQRIS       PaymentType = "qris"
 	SourceBRIVA      PaymentType = "bri_va"
 	SourceMandiriVA  PaymentType = "mandiri_va"
+	SourceFinpay     PaymentType = "finpay"
 )
 
 // Bank is a bank
