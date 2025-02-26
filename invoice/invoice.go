@@ -7,8 +7,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/config"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/config"
 
 	"github.com/google/uuid"
 )
@@ -65,6 +65,7 @@ type Invoice struct {
 	SubscriptionID     *uint64         `json:"-" gorm:"sql:index;"`
 	SuccessRedirectURL string          `json:"success_redirect_url"`
 	FailureRedirectURL string          `json:"failure_redirect_url"`
+	CallbackURL        string          `json:"callback_url"` // New field for notification callback URL
 }
 
 // GetTitle ...

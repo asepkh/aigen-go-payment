@@ -8,10 +8,10 @@ import (
 
 	"github.com/midtrans/midtrans-go/coreapi"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/gateway/xendit"
-	"github.com/imrenagi/go-payment/invoice"
-	"github.com/imrenagi/go-payment/subscription"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/gateway/xendit"
+	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-payment/subscription"
 )
 
 // GenerateInvoiceRequest provide to generate new invoice
@@ -38,6 +38,7 @@ type GenerateInvoiceRequest struct {
 	Callback *struct {
 		SuccessRedirectURL string `json:"success_redirect_url"`
 		FailureRedirectURL string `json:"failure_redirect_url"`
+		CallbackURL        string `json:"callback_url"` // New field for notification callback URL
 	} `json:"callback"`
 }
 

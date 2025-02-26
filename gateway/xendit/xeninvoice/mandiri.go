@@ -3,7 +3,7 @@ package xeninvoice
 import (
 	xinvoice "github.com/xendit/xendit-go/invoice"
 
-	"github.com/imrenagi/go-payment/invoice"
+	"github.com/asepkh/aigen-payment/invoice"
 )
 
 func NewMandiriVA(inv *invoice.Invoice) (*xinvoice.CreateParams, error) {
@@ -11,4 +11,3 @@ func NewMandiriVA(inv *invoice.Invoice) (*xinvoice.CreateParams, error) {
 		AddPaymentMethod("MANDIRI").
 		Build()
 }
-

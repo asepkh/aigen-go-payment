@@ -3,7 +3,7 @@ package invoice
 import (
 	"context"
 
-	"github.com/imrenagi/go-payment"
+	payment "github.com/asepkh/aigen-payment"
 )
 
 // PaymentCharger will call the API

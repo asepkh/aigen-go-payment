@@ -10,14 +10,14 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"github.com/imrenagi/go-payment/datastore/inmemory"
-	dssql "github.com/imrenagi/go-payment/datastore/sql"
-	"github.com/imrenagi/go-payment/gateway/midtrans"
-	"github.com/imrenagi/go-payment/invoice"
-	"github.com/imrenagi/go-payment/manage"
-	"github.com/imrenagi/go-payment/server"
-	"github.com/imrenagi/go-payment/subscription"
-	"github.com/imrenagi/go-payment/util/localconfig"
+	"github.com/asepkh/aigen-payment/datastore/inmemory"
+	dssql "github.com/asepkh/aigen-payment/datastore/sql"
+	"github.com/asepkh/aigen-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-payment/manage"
+	"github.com/asepkh/aigen-payment/server"
+	"github.com/asepkh/aigen-payment/subscription"
+	"github.com/asepkh/aigen-payment/util/localconfig"
 )
 
 func main() {

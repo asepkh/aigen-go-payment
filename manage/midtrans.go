@@ -8,8 +8,8 @@ import (
 	"github.com/midtrans/midtrans-go/coreapi"
 	"github.com/rs/zerolog"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/gateway/midtrans"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/gateway/midtrans"
 )
 
 // ProcessMidtransCallback takes care of notification sent by midtrans. This checks the validity of the sign key and the similarity

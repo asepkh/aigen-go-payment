@@ -1,8 +1,8 @@
 package xendit
 
 import (
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/subscription"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/subscription"
 )
 
 // NewStatus convert xendit status string to subscripiton status
@@ -40,4 +40,3 @@ func NewPaymentSource(s string) payment.PaymentType {
 		return ""
 	}
 }
-

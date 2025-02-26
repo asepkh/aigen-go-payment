@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/config"
-	cfgm "github.com/imrenagi/go-payment/config/mocks"
-	dsm "github.com/imrenagi/go-payment/datastore/mocks"
-	. "github.com/imrenagi/go-payment/invoice"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/config"
+	cfgm "github.com/asepkh/aigen-payment/config/mocks"
+	dsm "github.com/asepkh/aigen-payment/datastore/mocks"
+	. "github.com/asepkh/aigen-payment/invoice"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

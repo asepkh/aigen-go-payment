@@ -65,9 +65,10 @@ In general, this payment proxy can support payment through this following channe
 - You can opt-in to store payment notification callback to your database. Currently it only stores midtrans transaction status. Support for xendit will be added soon.
 
 ## Current Limitations
-1. For simplify the query creation for database join, I use [gorm.io](https://gorm.io/) as the ORM library. 
+
+1. For simplify the query creation for database join, I use [gorm.io](https://gorm.io/) as the ORM library.
 1. This proxy is not made for supporting all use cases available out there. It's hard requirement is just so that people can accept payment with as low effort as possible without need to worry about custom UI flow.
-1. No callback trigger at least of now once the payment manager is done procesing this request. This will be the next priority of the next release. This issue is documented [here](https://github.com/imrenagi/go-payment/issues/5)
+1. No callback trigger at least of now once the payment manager is done procesing this request. This will be the next priority of the next release. This issue is documented [here](https://github.com/asepkh/aigen-payment/issues/5)
 1. Callback or redirect URL is globally configured. This means, you cant configure callback for each request differently on the fly.
 
 ## Implemented Channels
@@ -80,25 +81,25 @@ This tables shows which payment channels that has been implemented by this proxy
 
 :x: : not yet supported natively by payment gateway
 
-| Channels                        | Midtrans (Snap)                     | Xendit (ewallet/XenInvoice) |
-| ------------------------------- | ----------------------------------- | --------------------------- |
-| Credit Card without installment | :white_check_mark:                  | :white_check_mark:          |
-| Credit Card with installment    | :white_check_mark:                  | :x:                         |
-| BCA VA                          | :white_check_mark:                  | :white_check_mark:          |
-| Mandiri VA                      | :white_check_mark:                  | :white_check_mark:          |
-| BNI VA                          | :white_check_mark:                  | :white_check_mark:          |
-| Permata VA                      | :white_check_mark:                  | :white_check_mark:          |
-| Other VA                        | :white_check_mark:                  | :x:                         |
-| BRI VA                          | :heavy_exclamation_mark:            | :white_check_mark:          |
-| Alfamart, Alfamidi, Dan+Dan     | :white_check_mark:                  | :white_check_mark:          |
-| QRIS                            | :white_check_mark:                  | :white_check_mark:          |
-| Gopay                           | :white_check_mark:                  | :x:                         |
-| OVO                             | :x:                                 | :white_check_mark:          |
-| DANA                            | :x:                                 | :white_check_mark:          |
-| LinkAja                         | :x:                                 | :white_check_mark:          |
-| ShopeePay                       | :white_check_mark:                  | :white_check_mark:          |
-| Akulaku                         | :white_check_mark:                  | :x:                         |
-| Kredivo                         | :x:                                 | :heavy_exclamation_mark:    |
+| Channels                        | Midtrans (Snap)          | Xendit (ewallet/XenInvoice) |
+| ------------------------------- | ------------------------ | --------------------------- |
+| Credit Card without installment | :white_check_mark:       | :white_check_mark:          |
+| Credit Card with installment    | :white_check_mark:       | :x:                         |
+| BCA VA                          | :white_check_mark:       | :white_check_mark:          |
+| Mandiri VA                      | :white_check_mark:       | :white_check_mark:          |
+| BNI VA                          | :white_check_mark:       | :white_check_mark:          |
+| Permata VA                      | :white_check_mark:       | :white_check_mark:          |
+| Other VA                        | :white_check_mark:       | :x:                         |
+| BRI VA                          | :heavy_exclamation_mark: | :white_check_mark:          |
+| Alfamart, Alfamidi, Dan+Dan     | :white_check_mark:       | :white_check_mark:          |
+| QRIS                            | :white_check_mark:       | :white_check_mark:          |
+| Gopay                           | :white_check_mark:       | :x:                         |
+| OVO                             | :x:                      | :white_check_mark:          |
+| DANA                            | :x:                      | :white_check_mark:          |
+| LinkAja                         | :x:                      | :white_check_mark:          |
+| ShopeePay                       | :white_check_mark:       | :white_check_mark:          |
+| Akulaku                         | :white_check_mark:       | :x:                         |
+| Kredivo                         | :x:                      | :heavy_exclamation_mark:    |
 
 ## Getting Started
 
@@ -136,7 +137,7 @@ Here is the comparison between Midtrans and Xendit onboarding based on my onboar
 
 ### Payment Gateway Callback
 
-Since this library is just providing the http.Handler, you can choose the REST API endpoint used by each callback. 
+Since this library is just providing the http.Handler, you can choose the REST API endpoint used by each callback.
 You can check the example on [server.go](./example/server/server.go).
 
 > Some Xendit Legacy Ewallet API(s) require you to set callback and redirect URL on the body request. You can override this
@@ -183,12 +184,12 @@ xendit:
       legacy: false
 ```
 
-* `xendit.ewallet.[ewallet].invoice` set to true if you want to use XenInvoice instead of using direct API integration
-* `xendit.ewallet.[ewallet].legacy` set to true if you want to use **legacy** Xendit Ewallet API. Note that this API will be deprecated by first quarter of 2022.
+- `xendit.ewallet.[ewallet].invoice` set to true if you want to use XenInvoice instead of using direct API integration
+- `xendit.ewallet.[ewallet].legacy` set to true if you want to use **legacy** Xendit Ewallet API. Note that this API will be deprecated by first quarter of 2022.
 
 #### Database
 
-I removed MySQL as default database for this library. This library only accept instance of `gorm.DB` for database. 
+I removed MySQL as default database for this library. This library only accept instance of `gorm.DB` for database.
 Thus, you can use any database you like and provide the `gorm.DB` instance of chosen database.
 
 For more, please check [server.go](/example/server/server.go)
@@ -281,20 +282,20 @@ bank_transfers:
 
 You need to set these environment variables to make sure this proxy to work.
 
-| Environment Variable  | Required | Description | Example | 
-| ------------- | ------------- | ------------- | ------------- |
-| ENVIRONMENT  | yes  | decide whether the server is for testing or production. For production, use `prod`.  | `prod`  |
-| LOG_LEVEL  | no  | Log level. Default to `DEBUG`. Available values: `DEBUG`, `INFO`, `WARN`, `ERROR`  | `DEBUG`  |
-| INVOICE_SUCCESS_REDIRECT_URL | yes | Redirect URL used by xendit if invoice is successfully paid | `http://example.com/donate/thanks` |
-| INVOICE_FAILED_REDIRECT_URL | yes | Redirect URL used by xendit if invoice is failed  | `http://example.com/donate/error` |
-| DANA_LEGACY_CALLBACK_URL | yes, if you are using legacy ewallet xendit API | Callback URL used for xendit legacy ewallet API to send payment callback | `http://api.example.com/payment/xendit/dana/callback` |
-| DANA_LEGACY_REDIRECT_URL | yes, if you are using legacy ewallet xendit API | Redirect URL used by xendit legacy ewallet API to redirect user after payment succeeded  | `http://example.com/donate/thanks` |
-| LINKAJA_LEGACY_CALLBACK_URL | yes, if you are using legacy ewallet xendit API | Callback URL used for xendit legacy ewallet API to send payment callback | `http://api.example.com/payment/xendit/linkaja/callback` |
-| LINKAJA_LEGACY_REDIRECT_URL | yes, if you are using legacy ewallet xendit API | Redirect URL used by xendit legacy ewallet API to redirect user after payment succeeded  | `http://example.com/donate/thanks` |
-| RECURRING_SUCCESS_REDIRECT_URL | yes, if you are using subscription feature | Redirect URL used by xendit subscription API to redirect user after payment succeeded | `http://example.com/donate/thanks` |
-| RECURRING_FAILED_REDIRECT_URL | yes, if you are using subscription feature | Redirect URL used by xendit subscription API to redirect user after payment failed | `http://example.com/donate/error` |
-| DANA_SUCCESS_REDIRECT_URL | yes, if you are using new xendit ewallet API | Redirect URL used by xendit new ewallet API if payment with dana is success | `http://example.com/success` |
-| LINKAJA_SUCCESS_REDIRECT_URL | yes, if you are using new xendit ewallet API | Redirect URL used by xendit new ewallet API if payment with dana is failed | `http://example.com/success` |
+| Environment Variable           | Required                                        | Description                                                                             | Example                                                  |
+| ------------------------------ | ----------------------------------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| ENVIRONMENT                    | yes                                             | decide whether the server is for testing or production. For production, use `prod`.     | `prod`                                                   |
+| LOG_LEVEL                      | no                                              | Log level. Default to `DEBUG`. Available values: `DEBUG`, `INFO`, `WARN`, `ERROR`       | `DEBUG`                                                  |
+| INVOICE_SUCCESS_REDIRECT_URL   | yes                                             | Redirect URL used by xendit if invoice is successfully paid                             | `http://example.com/donate/thanks`                       |
+| INVOICE_FAILED_REDIRECT_URL    | yes                                             | Redirect URL used by xendit if invoice is failed                                        | `http://example.com/donate/error`                        |
+| DANA_LEGACY_CALLBACK_URL       | yes, if you are using legacy ewallet xendit API | Callback URL used for xendit legacy ewallet API to send payment callback                | `http://api.example.com/payment/xendit/dana/callback`    |
+| DANA_LEGACY_REDIRECT_URL       | yes, if you are using legacy ewallet xendit API | Redirect URL used by xendit legacy ewallet API to redirect user after payment succeeded | `http://example.com/donate/thanks`                       |
+| LINKAJA_LEGACY_CALLBACK_URL    | yes, if you are using legacy ewallet xendit API | Callback URL used for xendit legacy ewallet API to send payment callback                | `http://api.example.com/payment/xendit/linkaja/callback` |
+| LINKAJA_LEGACY_REDIRECT_URL    | yes, if you are using legacy ewallet xendit API | Redirect URL used by xendit legacy ewallet API to redirect user after payment succeeded | `http://example.com/donate/thanks`                       |
+| RECURRING_SUCCESS_REDIRECT_URL | yes, if you are using subscription feature      | Redirect URL used by xendit subscription API to redirect user after payment succeeded   | `http://example.com/donate/thanks`                       |
+| RECURRING_FAILED_REDIRECT_URL  | yes, if you are using subscription feature      | Redirect URL used by xendit subscription API to redirect user after payment failed      | `http://example.com/donate/error`                        |
+| DANA_SUCCESS_REDIRECT_URL      | yes, if you are using new xendit ewallet API    | Redirect URL used by xendit new ewallet API if payment with dana is success             | `http://example.com/success`                             |
+| LINKAJA_SUCCESS_REDIRECT_URL   | yes, if you are using new xendit ewallet API    | Redirect URL used by xendit new ewallet API if payment with dana is failed              | `http://example.com/success`                             |
 
 ## Example Code
 

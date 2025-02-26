@@ -1,8 +1,8 @@
 package manage
 
 import (
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/config"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/config"
 )
 
 func paymentMethodListFromConfig(cfg *config.PaymentConfig, subtotal *payment.Money) *PaymentMethodList {
@@ -13,7 +13,7 @@ func paymentMethodListFromConfig(cfg *config.PaymentConfig, subtotal *payment.Mo
 
 	var bankTransfers []config.NonCardPayment
 	for _, bt := range cfg.BankTransfers {
-		payment := config.NewNonCardPayment(bt, subtotal)
+		payment := config.NewNonCardPayment(bt, subtotal) // Or subtotal.Value depending on the Money struct
 		if payment != nil {
 			bankTransfers = append(bankTransfers, *payment)
 		}

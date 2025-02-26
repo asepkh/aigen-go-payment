@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/imrenagi/go-payment/config"
+	. "github.com/asepkh/aigen-payment/config"
 	"github.com/stretchr/testify/assert"
 )
 

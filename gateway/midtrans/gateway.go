@@ -6,7 +6,7 @@ import (
 	"github.com/midtrans/midtrans-go"
 	"github.com/midtrans/midtrans-go/snap"
 
-	"github.com/imrenagi/go-payment/util/localconfig"
+	"github.com/asepkh/aigen-payment/util/localconfig"
 )
 
 // NewGateway creates new midtrans payment gateway

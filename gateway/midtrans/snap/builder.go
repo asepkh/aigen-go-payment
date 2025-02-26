@@ -9,18 +9,23 @@ import (
 	"github.com/midtrans/midtrans-go"
 	"github.com/midtrans/midtrans-go/snap"
 
-	"github.com/imrenagi/go-payment/invoice"
+	"github.com/asepkh/aigen-payment/invoice"
 )
 
 func newBuilder(inv *invoice.Invoice) *builder {
+	// Use environment variables as fallbacks
+	successRedirectURL := os.Getenv("INVOICE_SUCCESS_REDIRECT_URL")
+
+	// Prioritize per-request callback URLs if available
+	if inv.SuccessRedirectURL != "" {
+		successRedirectURL = inv.SuccessRedirectURL
+	}
 
 	var callback *snap.Callbacks
-	defaultRedirectUrl := os.Getenv("INVOICE_SUCCESS_REDIRECT_URL")
-	if defaultRedirectUrl != "" {
-		callback = &snap.Callbacks{Finish: defaultRedirectUrl}
-	}
-	if inv.SuccessRedirectURL != "" {
-		callback = &snap.Callbacks{Finish: inv.SuccessRedirectURL}
+	if successRedirectURL != "" {
+		callback = &snap.Callbacks{
+			Finish: successRedirectURL,
+		}
 	}
 
 	srb := &builder{

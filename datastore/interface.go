@@ -5,12 +5,12 @@ package datastore
 import (
 	"context"
 
-	"github.com/imrenagi/go-payment/subscription"
+	"github.com/asepkh/aigen-payment/subscription"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/config"
-	"github.com/imrenagi/go-payment/gateway/midtrans"
-	"github.com/imrenagi/go-payment/invoice"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/config"
+	"github.com/asepkh/aigen-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-payment/invoice"
 )
 
 // MidtransTransactionStatusRepository is an interface for

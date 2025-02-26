@@ -3,7 +3,7 @@ package xeninvoice
 import (
 	xinvoice "github.com/xendit/xendit-go/invoice"
 
-	"github.com/imrenagi/go-payment/invoice"
+	"github.com/asepkh/aigen-payment/invoice"
 )
 
 func NewShopeePay(inv *invoice.Invoice) (*xinvoice.CreateParams, error) {

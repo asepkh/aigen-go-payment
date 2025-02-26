@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/imrenagi/go-payment"
-	"github.com/imrenagi/go-payment/config"
+	payment "github.com/asepkh/aigen-payment"
+	"github.com/asepkh/aigen-payment/config"
 )
 
 // NewPaymentConfigRepository creates payment configuration data source by reading
