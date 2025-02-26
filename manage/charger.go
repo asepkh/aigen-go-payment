@@ -8,13 +8,13 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	payment "github.com/asepkh/aigen-payment"
-	midfactory "github.com/asepkh/aigen-payment/gateway/midtrans"
-	midgateway "github.com/asepkh/aigen-payment/gateway/midtrans"
-	"github.com/asepkh/aigen-payment/gateway/xendit"
-	factory "github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	payment "github.com/asepkh/aigen-go-payment"
+	midfactory "github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	midgateway "github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-go-payment/gateway/xendit"
+	factory "github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 
 	goxendit "github.com/xendit/xendit-go"
 )

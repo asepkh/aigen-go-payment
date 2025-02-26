@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/invoice"
 	"github.com/rs/zerolog"
 	"gorm.io/gorm"
 )
@@ -27,6 +27,16 @@ func (r InvoiceRepository) Save(ctx context.Context, invoice *invoice.Invoice) e
 
 	if err := r.DB.Save(invoice).Find(&invoice).Error; err != nil {
 		log.Error().Err(err).Msg("can't save invoice")
+		return payment.ErrDatabase
+	}
+	return nil
+}
+
+func (r InvoiceRepository) Update(ctx context.Context, invoice *invoice.Invoice) error {
+	log := zerolog.Ctx(ctx).With().Str("function", "InvoiceRepository.Update").Logger()
+
+	if err := r.DB.Save(invoice).Error; err != nil {
+		log.Error().Err(err).Msg("can't update invoice")
 		return payment.ErrDatabase
 	}
 	return nil

@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	. "github.com/asepkh/aigen-payment/util/localconfig"
+	. "github.com/asepkh/aigen-go-payment/util/localconfig"
 	"github.com/stretchr/testify/assert"
 )
 

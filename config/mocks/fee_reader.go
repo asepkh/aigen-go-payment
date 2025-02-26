@@ -3,10 +3,10 @@
 package mocks
 
 import (
-	config "github.com/asepkh/aigen-payment/config"
+	config "github.com/asepkh/aigen-go-payment/config"
 	mock "github.com/stretchr/testify/mock"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 
 	time "time"
 )

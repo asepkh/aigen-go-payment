@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 func dummyInv() *invoice.Invoice {

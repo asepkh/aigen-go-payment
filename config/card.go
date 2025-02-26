@@ -6,7 +6,7 @@ import (
 	"math"
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // Card represent the credit card payment config retrieved from the yaml config file

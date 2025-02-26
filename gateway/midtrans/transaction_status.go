@@ -6,7 +6,7 @@ import (
 	"io"
 	"time"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 )
 
 // TransactionStatus is object used to store notification from midtrans

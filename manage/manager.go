@@ -9,13 +9,15 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/datastore"
-	midgateway "github.com/asepkh/aigen-payment/gateway/midtrans"
-	xengateway "github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment/subscription"
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/datastore"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
+	fingateway "github.com/asepkh/aigen-go-payment/gateway/finpay"
+	midgateway "github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	xengateway "github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/subscription"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 )
 
 // NewManager creates a new payment manager
@@ -27,6 +29,7 @@ func NewManager(
 		config:          config,
 		xenditGateway:   xengateway.NewGateway(secret.Xendit),
 		midtransGateway: midgateway.NewGateway(secret.Midtrans),
+		finpayGateway:   fingateway.NewGateway(secret.Finpay),
 	}
 }
 
@@ -34,13 +37,15 @@ type InvoiceEventFunc func(ctx context.Context, i *invoice.Invoice) error
 
 // Manager handle business logic related to payment gateway
 type Manager struct {
-	config                   localconfig.Config
-	xenditGateway            *xengateway.Gateway
-	midtransGateway          *midgateway.Gateway
-	midTransactionRepository datastore.MidtransTransactionStatusRepository
-	invoiceRepository        datastore.InvoiceRepository
-	subscriptionRepository   datastore.SubscriptionRepository
-	paymentConfigRepository  datastore.PaymentConfigReader
+	config                      localconfig.Config
+	xenditGateway               *xengateway.Gateway
+	midtransGateway             *midgateway.Gateway
+	finpayGateway               *fingateway.Gateway
+	midTransactionRepository    datastore.MidtransTransactionStatusRepository
+	invoiceRepository           datastore.InvoiceRepository
+	subscriptionRepository      datastore.SubscriptionRepository
+	paymentConfigRepository     datastore.PaymentConfigReader
+	finpayTransactionRepository datastore.FinpayTransactionStatusRepository
 
 	invoiceCreatedCallback   InvoiceEventFunc
 	invoiceProcessedCallback InvoiceEventFunc
@@ -114,6 +119,20 @@ func (m *Manager) MustInvoiceFailedEventFunc(fn InvoiceEventFunc) {
 	m.invoiceFailedCallback = fn
 }
 
+// MapFinpayTransactionStatusRepository mapping the finpay transaction status repository
+func (m *Manager) MapFinpayTransactionStatusRepository(repo datastore.FinpayTransactionStatusRepository) error {
+	m.finpayTransactionRepository = repo
+	return nil
+}
+
+// MustFinpayTransactionStatusRepository mandatory mapping the finpay transaction status repo interface
+func (m *Manager) MustFinpayTransactionStatusRepository(repo datastore.FinpayTransactionStatusRepository) {
+	if repo == nil {
+		panic(fmt.Errorf("finpay transaction status repository can't be nil"))
+	}
+	m.finpayTransactionRepository = repo
+}
+
 func (m Manager) charger(inv *invoice.Invoice) invoice.PaymentCharger {
 	switch payment.NewGateway(inv.Payment.Gateway) {
 	case payment.GatewayXendit:
@@ -124,6 +143,10 @@ func (m Manager) charger(inv *invoice.Invoice) invoice.PaymentCharger {
 	case payment.GatewayMidtrans:
 		return &midtransCharger{
 			MidtransGateway: m.midtransGateway,
+		}
+	case payment.GatewayFinpay:
+		return &finpayCharger{
+			FinpayGateway: m.finpayGateway,
 		}
 	default:
 		panic("payment gateway is not found.")
@@ -466,4 +489,66 @@ func (m Manager) subscriptionController(gateway payment.Gateway) subscription.Co
 	return &xenditSubscriptionController{
 		XenditGateway: m.xenditGateway,
 	}
+}
+
+// ProcessFinpayCallback processes a Finpay callback
+func (m *Manager) ProcessFinpayCallback(ctx context.Context, status *finpay.TransactionStatus) error {
+	// Store the transaction status
+	if err := m.finpayTransactionRepository.Store(ctx, status); err != nil {
+		return fmt.Errorf("failed to store finpay transaction status: %w", err)
+	}
+
+	// Find the invoice by order ID
+	inv, err := m.invoiceRepository.FindByNumber(ctx, status.OrderID)
+	if err != nil {
+		return fmt.Errorf("failed to find invoice: %w", err)
+	}
+
+	// Process the transaction based on the status
+	switch status.TransactionState {
+	case "settlement", "capture":
+		// Payment successful
+		if err := inv.MarkAsPaid(); err != nil {
+			return fmt.Errorf("failed to mark invoice as paid: %w", err)
+		}
+
+		// Update the invoice in the repository
+		if err := m.invoiceRepository.Update(ctx, inv); err != nil {
+			return fmt.Errorf("failed to update invoice: %w", err)
+		}
+
+		// Trigger the invoice paid callback
+		if m.invoicePaidCallback != nil {
+			if err := m.invoicePaidCallback(ctx, inv); err != nil {
+				return fmt.Errorf("failed to trigger invoice paid callback: %w", err)
+			}
+		}
+
+	case "deny", "cancel", "expire", "failure":
+		// Payment failed
+		if err := inv.MarkAsFailed(); err != nil {
+			return fmt.Errorf("failed to mark invoice as failed: %w", err)
+		}
+
+		// Update the invoice in the repository
+		if err := m.invoiceRepository.Update(ctx, inv); err != nil {
+			return fmt.Errorf("failed to update invoice: %w", err)
+		}
+
+		// Trigger the invoice failed callback
+		if m.invoiceFailedCallback != nil {
+			if err := m.invoiceFailedCallback(ctx, inv); err != nil {
+				return fmt.Errorf("failed to trigger invoice failed callback: %w", err)
+			}
+		}
+	}
+
+	// Trigger the payment callback processed callback
+	if m.paymentCallbackProcessedCallback != nil {
+		if err := m.paymentCallbackProcessedCallback(ctx, inv); err != nil {
+			return fmt.Errorf("failed to trigger payment callback processed callback: %w", err)
+		}
+	}
+
+	return nil
 }

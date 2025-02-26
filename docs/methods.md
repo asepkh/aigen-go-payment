@@ -1,5 +1,4 @@
-Payment Methods API
-===
+# Payment Methods API
 
 ## List of payment methods
 
@@ -42,6 +41,56 @@ GET /payment/methods?price=1000&currency=IDR
       "display_name": "Gopay",
       "admin_fee": {
         "value": 0,
+        "curency": "IDR"
+      }
+    }
+  ],
+  "finpay_va": [
+    {
+      "payment_type": "bca_va",
+      "display_name": "BCA Virtual Account",
+      "admin_fee": {
+        "value": 4000,
+        "curency": "IDR"
+      }
+    },
+    {
+      "payment_type": "bni_va",
+      "display_name": "BNI Virtual Account",
+      "admin_fee": {
+        "value": 4000,
+        "curency": "IDR"
+      }
+    },
+    {
+      "payment_type": "bri_va",
+      "display_name": "BRI Virtual Account",
+      "admin_fee": {
+        "value": 4000,
+        "curency": "IDR"
+      }
+    },
+    {
+      "payment_type": "mandiri_va",
+      "display_name": "Mandiri Virtual Account",
+      "admin_fee": {
+        "value": 4000,
+        "curency": "IDR"
+      }
+    },
+    {
+      "payment_type": "permata_va",
+      "display_name": "Permata Virtual Account",
+      "admin_fee": {
+        "value": 4000,
+        "curency": "IDR"
+      }
+    },
+    {
+      "payment_type": "other_va",
+      "display_name": "Other Bank Virtual Account",
+      "admin_fee": {
+        "value": 4000,
         "curency": "IDR"
       }
     }

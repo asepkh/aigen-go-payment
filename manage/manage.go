@@ -8,10 +8,11 @@ import (
 
 	"github.com/midtrans/midtrans-go/coreapi"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/gateway/xendit"
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment/subscription"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
+	"github.com/asepkh/aigen-go-payment/gateway/xendit"
+	"github.com/asepkh/aigen-go-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/subscription"
 )
 
 // GenerateInvoiceRequest provide to generate new invoice
@@ -191,9 +192,15 @@ type MidtransProcessor interface {
 	ProcessMidtransCallback(ctx context.Context, mr *coreapi.TransactionStatusResponse) error
 }
 
+// FinpayProcessor callback handler for finpay
+type FinpayProcessor interface {
+	ProcessFinpayCallback(ctx context.Context, status *finpay.TransactionStatus) error
+}
+
 // Payment combines all interface used for payment manager
 type Payment interface {
 	Interface
 	XenditProcessor
 	MidtransProcessor
+	FinpayProcessor
 }

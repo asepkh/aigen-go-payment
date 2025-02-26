@@ -3,13 +3,13 @@ package invoice_test
 import (
 	"context"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/config"
-	cfgm "github.com/asepkh/aigen-payment/config/mocks"
-	dsm "github.com/asepkh/aigen-payment/datastore/mocks"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/config"
+	cfgm "github.com/asepkh/aigen-go-payment/config/mocks"
+	dsm "github.com/asepkh/aigen-go-payment/datastore/mocks"
 	"github.com/stretchr/testify/mock"
 
-	. "github.com/asepkh/aigen-payment/invoice"
+	. "github.com/asepkh/aigen-go-payment/invoice"
 )
 
 func draftInvoice() *Invoice {

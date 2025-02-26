@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 
-	payment "github.com/asepkh/aigen-payment"
+	payment "github.com/asepkh/aigen-go-payment"
 
-	. "github.com/asepkh/aigen-payment/subscription"
-	sm "github.com/asepkh/aigen-payment/subscription/mocks"
+	. "github.com/asepkh/aigen-go-payment/subscription"
+	sm "github.com/asepkh/aigen-go-payment/subscription/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

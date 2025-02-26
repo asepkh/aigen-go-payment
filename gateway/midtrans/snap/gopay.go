@@ -3,7 +3,7 @@ package snap
 import (
 	"github.com/midtrans/midtrans-go/snap"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 func NewGopay(inv *invoice.Invoice) (*snap.Request, error) {

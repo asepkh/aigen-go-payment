@@ -6,8 +6,8 @@ import (
 	midsnap "github.com/midtrans/midtrans-go/snap"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/asepkh/aigen-payment/gateway/midtrans/snap"
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/gateway/midtrans/snap"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 func TestNewShopeePay(t *testing.T) {

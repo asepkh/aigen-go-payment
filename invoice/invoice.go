@@ -7,8 +7,8 @@ import (
 
 	"gorm.io/gorm"
 
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/config"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/config"
 
 	"github.com/google/uuid"
 )
@@ -281,6 +281,18 @@ func (i *Invoice) Process(ctx context.Context) error {
 
 // Fail delegates the action to its state controller
 func (i *Invoice) Fail(ctx context.Context) error {
+	return i.GetStateController().Fail(i)
+}
+
+// MarkAsPaid marks the invoice as paid without requiring a context
+func (i *Invoice) MarkAsPaid() error {
+	now := time.Now()
+	i.PaidAt = &now
+	return i.GetStateController().Pay(i, i.Payment.TransactionID)
+}
+
+// MarkAsFailed marks the invoice as failed without requiring a context
+func (i *Invoice) MarkAsFailed() error {
 	return i.GetStateController().Fail(i)
 }
 

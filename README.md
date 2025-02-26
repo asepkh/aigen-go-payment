@@ -2,11 +2,11 @@
 
 <div align='center'>
 
-![go-payment](./header.png)
+![aigen-go-payment](./header.png)
 
 </div>
 
-Payment module used as proxy for multiple payment gateways. Currently it only supports [Midtrans SNAP](https://snap-docs.midtrans.com/) and Xendit [Ewallet](https://xendit.github.io/apireference/#ewallets) and [XenInvoice](https://xendit.github.io/apireference/#invoices). Support for other channels will be added incrementally.
+Payment module used as proxy for multiple payment gateways. Currently it supports [Midtrans SNAP](https://snap-docs.midtrans.com/), Xendit [Ewallet](https://xendit.github.io/apireference/#ewallets), [XenInvoice](https://xendit.github.io/apireference/#invoices), and Finpay. Support for other channels will be added incrementally.
 
 ---
 
@@ -21,14 +21,17 @@ Payment module used as proxy for multiple payment gateways. Currently it only su
   - [Payment Gateway Registration](#payment-gateway-registration)
     - [Midtrans](#midtrans)
     - [Xendit](#xendit)
+    - [Finpay](#finpay)
     - [Midtrans VS Xendit Onboarding](#midtrans-vs-xendit-onboarding)
   - [Payment Gateway Callback](#payment-gateway-callback)
     - [Midtrans](#midtrans-1)
     - [Xendit](#xendit-1)
+    - [Finpay](#finpay-1)
   - [Application Secret](#application-secret)
     - [Database](#database)
     - [Midtrans Credential](#midtrans-credential)
     - [Xendit Credential](#xendit-credential)
+    - [Finpay Credential](#finpay-credential)
   - [Configuration File](#configuration-file)
   - [Mandatory Environment Variables](#mandatory-environment-variables)
 - [Example Code](#example-code)
@@ -55,18 +58,18 @@ In general, this payment proxy can support payment through this following channe
 
 ## Why you should use this payment proxy?
 
-- If you are planning to use Midtrans SNAP and Xendit Invoice as the UI for the payment, you are strongly encouraged to use this proxy because it supports both UIs.
-- This proxy helps you managing the payment gateway used for each channel. It internally connects to both payment gateway as you need, in no time. What your API user knows is only one single API to generate `Invoice`
-- This proxy helps you seemlesly switch the gateway for a payment channel whenever one of them is not functioning properly/down for maintenance. For instance, Bank Transfer by VA, are supported by Midtrans and Xendit. If Midtrans VA is going south, you can easily switch the gateway to Xendit simply by updating the configuration file.
+- If you are planning to use Midtrans SNAP, Xendit Invoice, or Finpay as the UI for the payment, you are strongly encouraged to use this proxy because it supports all these UIs.
+- This proxy helps you managing the payment gateway used for each channel. It internally connects to multiple payment gateways as you need, in no time. What your API user knows is only one single API to generate `Invoice`
+- This proxy helps you seemlesly switch the gateway for a payment channel whenever one of them is not functioning properly/down for maintenance. For instance, Bank Transfer by VA, are supported by Midtrans, Xendit, and Finpay. If one gateway is going south, you can easily switch to another simply by updating the configuration file.
 - You can choose whether to absorb the admin/installment fees by yourself or to off load it to your user by changing the payment configuration written in yaml.
 - This proxy can generate `Invoice` storing informations about the customer info, item, payment method selected, and its state. `Invoice` state will change over the time depends on the transaction status callback sent by payment gateway.
-- You can opt-in to store payment notification callback to your database. Currently it only stores midtrans transaction status. Support for xendit will be added soon.
+- You can opt-in to store payment notification callback to your database. Currently it stores midtrans and finpay transaction statuses.
 
 ## Current Limitations
 
 1. For simplify the query creation for database join, I use [gorm.io](https://gorm.io/) as the ORM library.
 1. This proxy is not made for supporting all use cases available out there. It's hard requirement is just so that people can accept payment with as low effort as possible without need to worry about custom UI flow.
-1. No callback trigger at least of now once the payment manager is done procesing this request. This will be the next priority of the next release. This issue is documented [here](https://github.com/asepkh/aigen-payment/issues/5)
+1. No callback trigger at least of now once the payment manager is done procesing this request. This will be the next priority of the next release. This issue is documented [here](https://github.com/asepkh/aigen-go-payment/issues/5)
 1. Callback or redirect URL is globally configured. This means, you cant configure callback for each request differently on the fly.
 
 ## Implemented Channels
@@ -79,25 +82,25 @@ This tables shows which payment channels that has been implemented by this proxy
 
 :x: : not yet supported natively by payment gateway
 
-| Channels                        | Midtrans (Snap)          | Xendit (ewallet/XenInvoice) |
-| ------------------------------- | ------------------------ | --------------------------- |
-| Credit Card without installment | :white_check_mark:       | :white_check_mark:          |
-| Credit Card with installment    | :white_check_mark:       | :x:                         |
-| BCA VA                          | :white_check_mark:       | :white_check_mark:          |
-| Mandiri VA                      | :white_check_mark:       | :white_check_mark:          |
-| BNI VA                          | :white_check_mark:       | :white_check_mark:          |
-| Permata VA                      | :white_check_mark:       | :white_check_mark:          |
-| Other VA                        | :white_check_mark:       | :x:                         |
-| BRI VA                          | :heavy_exclamation_mark: | :white_check_mark:          |
-| Alfamart, Alfamidi, Dan+Dan     | :white_check_mark:       | :white_check_mark:          |
-| QRIS                            | :white_check_mark:       | :white_check_mark:          |
-| Gopay                           | :white_check_mark:       | :x:                         |
-| OVO                             | :x:                      | :white_check_mark:          |
-| DANA                            | :x:                      | :white_check_mark:          |
-| LinkAja                         | :x:                      | :white_check_mark:          |
-| ShopeePay                       | :white_check_mark:       | :white_check_mark:          |
-| Akulaku                         | :white_check_mark:       | :x:                         |
-| Kredivo                         | :x:                      | :heavy_exclamation_mark:    |
+| Channels                        | Midtrans (Snap)          | Xendit (ewallet/XenInvoice) | Finpay             |
+| ------------------------------- | ------------------------ | --------------------------- | ------------------ |
+| Credit Card without installment | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| Credit Card with installment    | :white_check_mark:       | :x:                         | :x:                |
+| BCA VA                          | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| Mandiri VA                      | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| BNI VA                          | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| Permata VA                      | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| Other VA                        | :white_check_mark:       | :x:                         | :white_check_mark: |
+| BRI VA                          | :heavy_exclamation_mark: | :white_check_mark:          | :white_check_mark: |
+| Alfamart, Alfamidi, Dan+Dan     | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| QRIS                            | :white_check_mark:       | :white_check_mark:          | :white_check_mark: |
+| Gopay                           | :white_check_mark:       | :x:                         | :x:                |
+| OVO                             | :x:                      | :white_check_mark:          | :x:                |
+| DANA                            | :x:                      | :white_check_mark:          | :x:                |
+| LinkAja                         | :x:                      | :white_check_mark:          | :x:                |
+| ShopeePay                       | :white_check_mark:       | :white_check_mark:          | :x:                |
+| Akulaku                         | :white_check_mark:       | :x:                         | :x:                |
+| Kredivo                         | :x:                      | :heavy_exclamation_mark:    | :x:                |
 
 ## Getting Started
 
@@ -114,6 +117,10 @@ Please review this [page](https://midtrans.com/tentang-passport) before creating
 #### Xendit
 
 Please visit this [registration page](https://dashboard.xendit.co/register/1) for creating an account.
+
+#### Finpay
+
+Please contact Finpay directly to set up a merchant account and obtain your API credentials.
 
 #### Midtrans VS Xendit Onboarding
 
@@ -165,6 +172,19 @@ To set your callback URL,
 
 > LinkAja and DANA callback URL are not defined on xendit dashboard. Instead, they are given while the proxy is initiating the payment request to Xendit API. You can find the callback URL set on [linkaja.go](/gateway/xendit/ewallet/v1/linkaja.go) and [dana.go](/gateway/xendit/ewallet/v1/dana.go)
 
+#### Finpay
+
+To set your callback URL for Finpay:
+
+- Update the `config.yaml` file with your callback and redirect URLs:
+  ```yaml
+  finpay:
+    callback_url: "https://example.com/payment/finpay/callback"
+    success_redirect_url: "https://example.com/payment/success"
+    failed_redirect_url: "https://example.com/payment/failed"
+  ```
+- Make sure your server is configured to handle the callback endpoint. In the example server, this is set up as `/payment/finpay/callback`.
+
 ### Application Secret
 
 Before using this application, you might need to update [secret.yaml](/example/server/secret.yaml) file containing application secret like database and payment gateway credential.
@@ -172,7 +192,7 @@ Before using this application, you might need to update [secret.yaml](/example/s
 ### Application Config
 
 As of now, application config stores configuration about which API that you would like to use for Xendit ewallet payments
-such as Dana, OVO, and LinkAja. Please check [config.yaml](/example/server/config.yaml).
+such as Dana, OVO, and LinkAja, as well as Finpay callback and redirect URLs. Please check [config.yaml](/example/server/config.yaml).
 
 ```yaml
 xendit:
@@ -180,10 +200,18 @@ xendit:
     ovo:
       invoice: false
       legacy: false
+
+finpay:
+  callback_url: "https://example.com/payment/finpay/callback"
+  success_redirect_url: "https://example.com/payment/success"
+  failed_redirect_url: "https://example.com/payment/failed"
 ```
 
 - `xendit.ewallet.[ewallet].invoice` set to true if you want to use XenInvoice instead of using direct API integration
 - `xendit.ewallet.[ewallet].legacy` set to true if you want to use **legacy** Xendit Ewallet API. Note that this API will be deprecated by first quarter of 2022.
+- `finpay.callback_url` is the URL where Finpay will send transaction status updates
+- `finpay.success_redirect_url` is the URL where users will be redirected after a successful payment
+- `finpay.failed_redirect_url` is the URL where users will be redirected after a failed payment
 
 #### Database
 
@@ -221,6 +249,20 @@ payment:
   xendit:
     secretKey: "xendit-api-key"
     callbackToken: "xendit-callback-token"
+```
+
+#### Finpay Credential
+
+- Obtain your Finpay API credentials from your Finpay account manager
+- Update the `secret.yaml` file with your credentials:
+
+```yaml
+payment:
+  ...
+  finpay:
+    secretKey: "finpay-secret-key"
+    clientKey: "finpay-client-key"
+    merchantID: "finpay-merchant-id"
 ```
 
 ### Configuration File
@@ -294,6 +336,7 @@ You need to set these environment variables to make sure this proxy to work.
 | RECURRING_FAILED_REDIRECT_URL  | yes, if you are using subscription feature      | Redirect URL used by xendit subscription API to redirect user after payment failed      | `http://example.com/donate/error`                        |
 | DANA_SUCCESS_REDIRECT_URL      | yes, if you are using new xendit ewallet API    | Redirect URL used by xendit new ewallet API if payment with dana is success             | `http://example.com/success`                             |
 | LINKAJA_SUCCESS_REDIRECT_URL   | yes, if you are using new xendit ewallet API    | Redirect URL used by xendit new ewallet API if payment with dana is failed              | `http://example.com/success`                             |
+| FINPAY_MERCHANT_NAME           | no                                              | Merchant name to be displayed on Finpay payment page                                    | `My Store`                                               |
 
 ## Example Code
 

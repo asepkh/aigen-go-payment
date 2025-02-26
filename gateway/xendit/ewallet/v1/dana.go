@@ -6,7 +6,7 @@ import (
 	goxendit "github.com/xendit/xendit-go"
 	"github.com/xendit/xendit-go/ewallet"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // NewDana create xendit payment request for Dana

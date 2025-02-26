@@ -1,8 +1,7 @@
-Subscription API
-===
+# Subscription API
 
 If you want to make recurring payment for your user, you can use Subscription API. For example of usage,
-check [Postman Collection](./go-payment.postman_collection.json)
+check [Postman Collection](./aigen-go-payment.postman_collection.json)
 
 Per current implementation, recurring payment is only supported by Xendit gateway. Here are the recurring payment
 features:
@@ -33,10 +32,10 @@ features:
 
 ### Request
 
-* You can use any integer as `schedule.interval`.
-* `day`, `month` and `year` are the valid values for `schedule.interval_unit`
-* If `charge_immediately` is `true`, `schedule.start_at` will be ignored and automatically set to now.
-* If `charge_immediately` is `false`, `schedule.start_at` must not be empty.
+- You can use any integer as `schedule.interval`.
+- `day`, `month` and `year` are the valid values for `schedule.interval_unit`
+- If `charge_immediately` is `true`, `schedule.start_at` will be ignored and automatically set to now.
+- If `charge_immediately` is `false`, `schedule.start_at` must not be empty.
 
 ```json
 POST /payment/subscriptions
@@ -54,7 +53,7 @@ POST /payment/subscriptions
 		"interval": 1,
 		"interval_unit": "day",
 		"start_at": "2020-06-10T00:00:00.000Z"
-	} 
+	}
 }
 ```
 
@@ -65,13 +64,13 @@ your user to payment page.
 
 ```json
 {
-    "id": 8,    
-    "number": "9b9f1999-b2c8-4eb3-8188-23a115237a4c",
-    // redacted ....
-    // .....
-    "charge_immediately": true,
-    "last_created_invoice": "https://invoice-staging.xendit.co/web/invoices/5edc5b024eb7c20fe6c8ae91",
-    "status": "ACTIVE",
-    "recurrence_progress": 0
+  "id": 8,
+  "number": "9b9f1999-b2c8-4eb3-8188-23a115237a4c",
+  // redacted ....
+  // .....
+  "charge_immediately": true,
+  "last_created_invoice": "https://invoice-staging.xendit.co/web/invoices/5edc5b024eb7c20fe6c8ae91",
+  "status": "ACTIVE",
+  "recurrence_progress": 0
 }
 ```

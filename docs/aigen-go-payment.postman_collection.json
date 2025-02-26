@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "8193a2d1-3a85-404d-a789-6e672e80d716",
-    "name": "go-payment",
+    "name": "aigen-go-payment",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -15,7 +15,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"alfamart\"\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
+              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"alfamart\"\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -38,7 +38,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"credit_card\"\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"089922222222\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
+              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"credit_card\"\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"089922222222\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -61,7 +61,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"credit_card\",\n\t\t\"credit_card\": {\n\t\t\t\"bank\": \"bca\",\n\t\t\t\"installment\": {\n\t\t\t\t\"type\": \"offline\",\n\t\t\t\t\"term\": 3\n\t\t\t}\n\t\t}\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"089922222222\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
+              "raw": "{\n\t\"payment\": {\n\t\t\"payment_type\": \"credit_card\",\n\t\t\"credit_card\": {\n\t\t\t\"bank\": \"bca\",\n\t\t\t\"installment\": {\n\t\t\t\t\"type\": \"offline\",\n\t\t\t\t\"term\": 3\n\t\t\t}\n\t\t}\n\t},\n\t\"customer\": {\n\t\t\"name\": \"John\",\n\t\t\"email\": \"foo@bar.com\",\n\t\t\"phone_number\": \"089922222222\"\n\t},\n\t\"items\": [{\n\t\t\"name\": \"Support Podcast\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 10000,\n\t\t\"currency\": \"IDR\"\n\t},{\n\t\t\"name\": \"Support Podcast 2\",\n\t\t\"category\": \"PODCAST\",\n\t\t\"merchant\": \"aigen-go-payment.comx\",\n\t\t\"description\": \"donasi podcast imre nagi\",\n\t\t\"qty\": 1,\n\t\t\"price\": 20000,\n\t\t\"currency\": \"IDR\"\n\t}]\n}",
               "options": {
                 "raw": {
                   "language": "json"

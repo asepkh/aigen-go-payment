@@ -9,3 +9,8 @@ xendit:
     linkaja:
       invoice: false
       legacy: false
+
+finpay:
+  callback_url: "https://example.com/payment/finpay/callback"
+  success_redirect_url: "https://example.com/payment/success"
+  failed_redirect_url: "https://example.com/payment/failed"

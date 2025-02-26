@@ -10,14 +10,15 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"github.com/asepkh/aigen-payment/datastore/inmemory"
-	dssql "github.com/asepkh/aigen-payment/datastore/sql"
-	"github.com/asepkh/aigen-payment/gateway/midtrans"
-	"github.com/asepkh/aigen-payment/invoice"
-	"github.com/asepkh/aigen-payment/manage"
-	"github.com/asepkh/aigen-payment/server"
-	"github.com/asepkh/aigen-payment/subscription"
-	"github.com/asepkh/aigen-payment/util/localconfig"
+	"github.com/asepkh/aigen-go-payment/datastore/inmemory"
+	dssql "github.com/asepkh/aigen-go-payment/datastore/sql"
+	"github.com/asepkh/aigen-go-payment/gateway/finpay"
+	"github.com/asepkh/aigen-go-payment/gateway/midtrans"
+	"github.com/asepkh/aigen-go-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/manage"
+	"github.com/asepkh/aigen-go-payment/server"
+	"github.com/asepkh/aigen-go-payment/subscription"
+	"github.com/asepkh/aigen-go-payment/util/localconfig"
 )
 
 func main() {
@@ -45,6 +46,7 @@ func main() {
 		&invoice.BillingAddress{},
 		&subscription.Subscription{},
 		&subscription.Schedule{},
+		&finpay.TransactionStatus{},
 	)
 
 	m := manage.NewManager(*config, secret.Payment)
@@ -52,6 +54,7 @@ func main() {
 	m.MustInvoiceRepository(dssql.NewInvoiceRepository(db))
 	m.MustSubscriptionRepository(dssql.NewSubscriptionRepository(db))
 	m.MustPaymentConfigReader(inmemory.NewPaymentConfigRepository("example/server/payment-methods.yaml"))
+	m.MustFinpayTransactionStatusRepository(dssql.NewFinpayTransactionRepository(db))
 
 	srv := srv{
 		Router:     mux.NewRouter(),
@@ -104,4 +107,5 @@ func (s srv) routes() {
 	s.Router.HandleFunc("/payment/subscriptions/{subscription_number}/pause", s.paymentSrv.PauseSubscriptionHandler()).Methods("POST", "PUT")
 	s.Router.HandleFunc("/payment/subscriptions/{subscription_number}/stop", s.paymentSrv.StopSubscriptionHandler()).Methods("POST", "PUT")
 	s.Router.HandleFunc("/payment/subscriptions/{subscription_number}/resume", s.paymentSrv.ResumeSubscriptionHandler()).Methods("POST", "PUT")
+	s.Router.HandleFunc("/payment/finpay/callback", s.paymentSrv.FinpayCallbackHandler()).Methods(http.MethodPost)
 }

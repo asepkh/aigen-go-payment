@@ -2,10 +2,10 @@ package localconfig
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"strings"
-	"fmt"
 
 	"github.com/spf13/viper"
 )

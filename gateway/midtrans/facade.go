@@ -1,9 +1,9 @@
 package midtrans
 
 import (
-	payment "github.com/asepkh/aigen-payment"
-	"github.com/asepkh/aigen-payment/gateway/midtrans/snap"
-	"github.com/asepkh/aigen-payment/invoice"
+	payment "github.com/asepkh/aigen-go-payment"
+	"github.com/asepkh/aigen-go-payment/gateway/midtrans/snap"
+	"github.com/asepkh/aigen-go-payment/invoice"
 
 	"fmt"
 

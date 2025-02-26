@@ -5,7 +5,7 @@ import (
 
 	"github.com/xendit/xendit-go/ewallet"
 
-	"github.com/asepkh/aigen-payment/invoice"
+	"github.com/asepkh/aigen-go-payment/invoice"
 )
 
 // NewOVO is factory for OVO payment with xendit latest charge API

@@ -1,9 +1,9 @@
-module github.com/asepkh/aigen-payment
+module github.com/asepkh/aigen-go-payment
 
 go 1.17
 
 require (
-	github.com/asepkh/aigen-payment v1.4.0
+	github.com/asepkh/aigen-go-payment v1.0.0
 	github.com/google/uuid v1.1.1
 	github.com/gorilla/mux v1.7.4
 	github.com/midtrans/midtrans-go v1.2.2
